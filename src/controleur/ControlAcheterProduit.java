@@ -29,16 +29,15 @@ public class ControlAcheterProduit {
 		return controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
 	}
 	
-	public String acheterProduit(String nomAcheteur, String nomVendeur, int quantite) {
-		if (!controlVerifierIdentite.verifierIdentite(nomAcheteur)) {
-			return "Je suis désolé " + nomAcheteur + ", mais il faut être un habitant du village pour commercer ici.";
-		}
+	public int acheterProduit(String nomVendeur, int quantite) {
 		if (!controlVerifierIdentite.verifierIdentite(nomVendeur)) {
-			return "Je suis désolé " + nomVendeur + ", mais il faut être un habitant du village pour commercer ici.";
+			System.out.println("Je suis désolé " + nomVendeur + ", mais il faut être un habitant du village pour commercer ici.");
+			return 0;
 		}
 		Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
 		if (etal == null) {
-			return "Désolé, " + nomVendeur + " ne vend rien sur le marché.";
+			System.out.println("Désolé, " + nomVendeur + " ne vend rien sur le marché.");
+			return 0;
 		}
 		int quantiteAchetee = etal.acheterProduit(quantite);
 		
