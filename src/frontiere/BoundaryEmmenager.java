@@ -27,7 +27,7 @@ public class BoundaryEmmenager {
 					break;
 
 				case 2:
-					//TODO a completer
+					emmenagerGaulois(nomVisiteur);
 					break;
 
 				default:
@@ -40,6 +40,25 @@ public class BoundaryEmmenager {
 	}
 
 	private void emmenagerDruide(String nomVisiteur) {
-		//TODO a completer
+		StringBuilder question= new StringBuilder();
+		question.append("Bienvenue druide" + nomVisiteur+"\n");
+		question.append("Quelle est votre force");
+		int force=Clavier.entrerEntier(question.toString());
+		int effetPotionMin=Clavier.entrerEntier("Quelle est la force de potion la plus faible que vous produisez\n");
+		int effetPotionMax=Clavier.entrerEntier("Quelle est la force de potion la plus forte que vous produisez\n");
+		while (effetPotionMin>effetPotionMax) {
+			System.out.println("Vous vous êtes trompés entre la potion minimum et la potion maximum \n");
+			effetPotionMin=Clavier.entrerEntier("Quelle est la force de potion la plus faible que vous produisez\n");
+			effetPotionMax=Clavier.entrerEntier("Quelle est la force de potion la plus forte que vous produisez\n");
+		}
+		controlEmmenager.ajouterDruide(nomVisiteur,force,effetPotionMin,effetPotionMax);
+	}
+	
+	private void emmenagerGaulois(String nomVisiteur) {
+		StringBuilder question= new StringBuilder();
+		question.append("Bienvenue villageois " + nomVisiteur+"\n");
+		question.append("Quelle est votre force");
+		int force=Clavier.entrerEntier(question.toString());
+		controlEmmenager.ajouterGaulois(nomVisiteur, force);
 	}
 }
