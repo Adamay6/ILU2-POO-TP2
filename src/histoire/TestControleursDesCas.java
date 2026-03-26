@@ -9,7 +9,6 @@ import controleur.ControlPrendreEtal;
 import controleur.ControlTrouverEtalVendeur;
 import controleur.ControlVerifierIdentite;
 import personnages.Chef;
-import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
 
@@ -21,9 +20,6 @@ public class TestControleursDesCas {
 		Village village = new Village("le village des irréductibles", 10, 5);
 		Chef abraracourcix = new Chef("Abraracourcix", 10, village);
 		village.setChef(abraracourcix);
-		Gaulois asterix = new Gaulois("Asterix", 6);
-		Gaulois obelix = new Gaulois("Obelix", 12);
-
 		ControlAfficherVillage controlAfficherVillage = new ControlAfficherVillage(
 				village);
 

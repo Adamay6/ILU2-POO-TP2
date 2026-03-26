@@ -22,6 +22,9 @@ public class ControlAcheterProduit {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 
+	public Boolean verifierIdentiteAcheteur(String nomAcheteur) {
+		return controlVerifierIdentite.verifierIdentite(nomAcheteur);
+	}
 	public Boolean isVendeur(String nomVendeur) {
 		return controlVerifierIdentite.verifierIdentite(nomVendeur);
 	}
@@ -30,13 +33,14 @@ public class ControlAcheterProduit {
 	}
 	
 	public int acheterProduit(String nomVendeur, int quantite) {
-		if (!controlVerifierIdentite.verifierIdentite(nomVendeur)) {
+		if (!isVendeur(nomVendeur)) {
 			return -1;
 		}
-		Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
+		Etal etal = trouverEtalVendeur(nomVendeur);
 		if (etal == null) {
 			return -2;
 		}
+		
 
 		return etal.acheterProduit(quantite);
 	}

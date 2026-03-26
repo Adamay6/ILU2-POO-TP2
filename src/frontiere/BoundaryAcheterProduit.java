@@ -37,29 +37,33 @@ public class BoundaryAcheterProduit {
 
 	    String nomVendeur = vendeurs[choixVendeur - 1].getNom();
 	    Etal etalVendeur = controlAcheterProduit.trouverEtalVendeur(nomVendeur);
-	    if (etalVendeur == null || !etalVendeur.getProduit().equalsIgnoreCase(produit) || etalVendeur.getQuantite() == 0) {
-	        System.out.println("Désolé, ce commerçant ne vend pas de " + produit + ".");
+	    if (etalVendeur == null || !etalVendeur.getProduit().equalsIgnoreCase(produit)) {
+	        System.out.println("Désolé, ce commerà§ant ne vend pas de " + produit + ".");
 	        return;
 	    }
 	    System.out.print("Combien de " + produit + " voulez-vous acheter ? ");
 	    int quantite = scanner.nextInt();
 	    scanner.nextLine();
-	    int resultat = controlAcheterProduit.acheterProduit(nomVendeur, quantite);
-	    System.out.println(resultat);
-	    if (resultat== -1) {
-	    	System.out.println("Je suis désolé " + nomVendeur + ", mais il faut être un habitant du village pour commercer ici.");
-	    }else if(resultat==-2) {
-	    	System.out.println("Désolé, " + nomVendeur + " ne vend rien sur le marché.");
-	    }else if(resultat==0) {
-	    	System.out.println(nomAcheteur + " veut acheter " + quantite + " " + etalVendeur.getProduit() + 
-				       ", malheureusement il n'y en a plus !");
-	    } else if(resultat<quantite) {
-	    	System.out.println( nomAcheteur + " veut acheter " + quantite + " " + etalVendeur.getProduit() + 
-				       ", mais il n'en reste que " + resultat + ". " + 
-				       nomAcheteur + " achète tout le stock de " + nomVendeur + ".");
-	    } else {
-	    	System.out.println( nomAcheteur + " achète " + quantite + " " + etalVendeur.getProduit() + " à " + nomVendeur + ".");
+	    if (!controlAcheterProduit.verifierIdentiteAcheteur(nomAcheteur)) {
+	    	System.out.println("Je suis désolé " + nomAcheteur + ", mais il faut àªtre un habitant du village pour commercer ici.");
+	    }else {
+	    	int resultat = controlAcheterProduit.acheterProduit(nomVendeur, quantite);
+		    System.out.println(resultat);
+		   
+		    if(resultat==-2) {
+		    	System.out.println("Désolé, " + nomVendeur + " ne vend rien sur le marché.");
+		    }else if(resultat==0) {
+		    	System.out.println(nomAcheteur + " veut acheter " + quantite + " " + etalVendeur.getProduit() + 
+					       ", malheureusement il n'y en a plus !");
+		    } else if(resultat<quantite) {
+		    	System.out.println( nomAcheteur + " veut acheter " + quantite + " " + etalVendeur.getProduit() + 
+					       ", mais il n'en reste que " + resultat + ". " + 
+					       nomAcheteur + " achète tout le stock de " + nomVendeur + ".");
+		    } else {
+		    	System.out.println( nomAcheteur + " achète " + quantite + " " + etalVendeur.getProduit() + " à  " + nomVendeur + ".");
+		    }
 	    }
+	    
 	    
 	}
 
